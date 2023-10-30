@@ -8,6 +8,7 @@ yum install -y docker
 
 systemctl start docker.service
 systemctl enable docker.service
+sudo usermod -aG docker ${USER}
 
 curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
 
