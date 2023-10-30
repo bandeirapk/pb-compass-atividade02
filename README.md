@@ -138,5 +138,43 @@
 - Como `VPC` selecione a VPC criada anteriormente.
 - Mantenha a `Versão do protocolo` como `HTTP1`.
 - A seguir clique em `Próximo`.
-- Na página de `Registrar destinos` não selecione nenhuma instância.
+- Na página de `Registrar destinos` e não selecione nenhuma instância.
 - Selecione `Criar grupo de destino`.
+- **ATENÇÃO:** Após a instância serem criadas, volte ao grupo de destino e selecione as instâncias criadas indo em `Registrar Destinos`.
+
+![Registrar Destinos](./assets/registry.png)
+
+> ### Passo 7: Criando o Load balancer
+
+- No menu EC2 procure por `load Balancer` na barra de navegação à esquerda.
+- Acesse e clique em `Criar load balancer`.
+- Selecione `Criar` Application Load Balancer.
+- Nomeie o load balancer.
+- Em `Esquema` selecione `Voltado para a internet`.
+- Em `Tipo de endereço IP` mantenha `IPv4`.
+- Na aba `Mapeamento de rede` selecione a rede VPC.
+- Selecione as duas subnets públicas criadas anteriormente.
+- Como `Grupo de segurança` selecione o **SG-ALB**.
+- Em `Listeners e roteamento` mantenha `HTTP`:`80` e selecione o grupo de destino criado anteriormente.
+- Clique em `Criar load Balancer`.
+
+> ### Passo 8: Criando o Auto Scaling
+
+- No menu EC2 procure por `Auto Scaling` na barra de navegação à esquerda.
+- Acesse e clique em `Criar grupo do Auto Scaling`.
+- Nomeio o grupo de Auto Scaling.
+- Selecione o modelo de execução criado anteriormente.
+- A seguir clique em `Próximo`.
+- Selecione a VPC criada anteriormente.
+- Selecione as Sub-redes Privadas.
+- A seguir clique em `Próximo`.
+- Marque a opção `Anexar a um balanceador de carga existente`.
+- Marque a opção `Escolha entre seus grupos de destino de balanceador de carga`.
+- Selecione o grupo de destino criado anteriormente.
+- A seguir clique em `Próximo`.
+- Em `Tamanho do grupo` selecione:
+  - Capacidade desejada: 2
+  - Capacidade mínima: 2
+  - Capacidade máxima: 4
+- A seguir clique em `Pular para a revisão`.
+- Clique em `Criar grupo de auto Scaling`.
